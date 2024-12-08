@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bigboolstudio - MAIN</title>
+    <style>
+        body {
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            position: relative; /* Needed for the banner positioning */
+        }
+
+        .banner {
+            position: absolute;
+            top: 120px; /* Add some spacing from the top */
+            width: 100%;
+            text-align: center;
+            z-index: 1; /* Ensure it's above other elements */
+        }
+
+        .banner img {
+            width: 100%;
+            max-width: 600px; /* Adjust width as needed */
+            height: auto;
+        }
+
+        .gallery-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            top: 40px; /* Adjust positioning to center vertically */
+        }
+
+        .thumbnails {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .thumbnail {
+            width: 118px;
+            height: 118px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .thumbnail:hover {
+            opacity: 0.8;
+            transform: scale(1.1);
+        }
+
+        .main-image {
+            width: 375px;
+            height: 650px;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <!-- Banner Section -->
+    <div class="banner">
+        <img src="https://i.ibb.co/8m0QDfp/banner-homev2.png" alt="Banner">
+    </div>
+
+    <!-- Gallery Section -->
+    <div class="gallery-container">
+        <div class="thumbnails left-thumbnails">
+            <img src="https://i.ibb.co/gZpkpQL/thumbnail-merch.png" alt="merch" class="thumbnail" 
+                data-hover-image="https://i.ibb.co/2tpbChC/thumbnail-merch-hover.png" 
+                data-link="https://bigboolstudio.bigcartel.com/">
+            <img src="https://i.ibb.co/hYXRDPR/thumbnail-drops.png" alt="drops" class="thumbnail" 
+                data-hover-image="https://i.ibb.co/vYjHGbJ/thumbnail-drops-hover.png" 
+                data-link="https://bigboolmusic.bandcamp.com/?from=viewsite_dashboard">
+            <img src="https://i.ibb.co/Fqk6FhL/thumbnail-blog.png" alt="blog" class="thumbnail" 
+                data-hover-image="https://i.ibb.co/FHn46VW/thumbnail-blog-hover.png" 
+                data-link="blog.html">
+            <img src="https://i.ibb.co/2Sf6tSc/thumbnail-portfolio.png" alt="portfolio" class="thumbnail" 
+                data-hover-image="https://i.ibb.co/5MSKSVY/thumbnail-portfolio-hover.png" 
+                data-link="https://example.com/page4">
+            <img src="https://i.ibb.co/wQhbtkW/thumbnail-msg-me.png" alt="msg me" class="thumbnail" 
+                data-hover-image="https://i.ibb.co/MhC6KW0/thumbnail-msg-me-hover.png" 
+                data-link="contact.html">
+        </div>
+
+        <!-- Main Image -->
+        <img src="https://i.ibb.co/Dkgz3GC/mainimage-08.png" alt="Main Image" class="main-image" id="mainImage">
+
+        <div class="thumbnails right-thumbnails">
+            <img src="https://i.ibb.co/bJnk1hF/thumbnail-beats.png" alt="beats" class="thumbnail" 
+                data-hover-image="https://i.ibb.co/XbSgjjW/thumbnail-beats-hover.png" 
+                data-link="https://bigboolmusic.bandcamp.com/?from=viewsite_dashboard">
+            <img src="https://i.ibb.co/wMLhYMp/thumbnail-links.png" alt="links" class="thumbnail" 
+                data-hover-image="https://i.ibb.co/L1HFS5T/thumbnail-links-hover.png" 
+                data-link="https://linktr.ee/bigboolstudio">
+            <img src="https://i.ibb.co/whkbx3p/thumbnail-games.png" alt="games" class="thumbnail" 
+                data-hover-image="https://i.ibb.co/XpPpK5H/thumbnail-games-hover.png" 
+                data-link="game.html">
+            <img src="https://i.ibb.co/SwGL5JK/thumbnail-info.png" alt="info" class="thumbnail" 
+                data-hover-image="https://i.ibb.co/VLxjSMn/thumbnail-info-hover.png" 
+                data-link="https://example.com/page9">
+            <img src="https://i.ibb.co/kmJtx6B/thumbnail-donate.png" alt="donate" class="thumbnail" 
+                data-hover-image="https://i.ibb.co/M9SzXnm/thumbnail-support-hover.png" 
+                data-link="https://buymeacoffee.com/bigboolstudio">
+        </div>
+    </div>
+
+    <script>
+        const thumbnails = document.querySelectorAll('.thumbnail');
+        const mainImage = document.getElementById('mainImage');
+
+        // Array of pre-defined main image sources
+        const mainImages = [
+            "https://i.ibb.co/LNbn521/mainimage-03.png", // Main image for first thumbnail
+            "https://i.ibb.co/kqhVGZK/mainimage-09.png", // Main image for second thumbnail
+            "https://i.ibb.co/99XG6rn/mainimage-02.png", // Main image for third thumbnail
+            "https://i.ibb.co/HKNT69r/mainimage-06.png", // Main image for fourth thumbnail
+            "https://i.ibb.co/TmrZmdd/mainimage-01.png", // Main image for fifth thumbnail
+            "https://i.ibb.co/0mPHYsT/mainimage-05.png", // Main image for sixth thumbnail
+            "https://i.ibb.co/0DDx3tb/mainimage-04.png", // Main image for seventh thumbnail
+            "https://i.ibb.co/5FSyb87/mainimage-07.png", // Main image for eighth thumbnail
+            "https://i.ibb.co/19GjtbG/mainimage-00.png", // Main image for ninth thumbnail
+            "https://i.ibb.co/LgTNcjv/mainimage-10.png" // Main image for tenth thumbnail
+        ];
+
+        thumbnails.forEach((thumbnail, index) => {
+            const originalThumbnailSrc = thumbnail.src;
+
+            thumbnail.addEventListener('mouseover', () => {
+                const hoverImage = thumbnail.dataset.hoverImage;
+                if (hoverImage) {
+                    thumbnail.src = hoverImage;
+                }
+
+                // Update the main image to the corresponding pre-defined image
+                mainImage.src = mainImages[index];
+            });
+
+            thumbnail.addEventListener('mouseout', () => {
+                thumbnail.src = originalThumbnailSrc;
+
+                // Revert the main image back to its original state
+                mainImage.src = "https://i.ibb.co/Dkgz3GC/mainimage-08.png";
+            });
+
+            thumbnail.addEventListener('click', () => {
+                const link = thumbnail.dataset.link;
+                if (link) {
+                    window.location.href = link;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

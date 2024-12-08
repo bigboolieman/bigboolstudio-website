@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIG BOOL STUDIO</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            background-color: #000000;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            width: 100%;
+            max-width: 800px;
+        }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #ffffff;
+            color: #000000;
+        }
+        button {
+            width: 102.8%;
+            padding: 10px;
+            background-color: #ffffff;
+            color: #000000;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #000000;
+            color: #ffffff;
+        }
+        .image-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            margin-top: 5px;
+        }
+        .image-container img {
+            max-width: 100px;
+            width: 100%;
+            height: auto;
+            transition: opacity 0.5s ease, transform 0.3s ease; /* Added transition for transform */
+            cursor: pointer;
+        }
+        .image-container a:hover img { /* Added hover effect to the anchor tag surrounding the images */
+            transform: scale(1.1); /* Zoom effect on hover */
+        }
+      
+    </style>
+</head>
+<body>
+    <div class="image-container">
+        <a href="home.html"><img src="https://i.ibb.co/VtxJM9V/homeeeepageframe-040001.png" alt="Image 1"></a>
+        <a href="https://bigboolstudio.bigcartel.com"><img src="https://i.ibb.co/gm5rHPC/merchframe-010001.png" alt="Image 2"></a>
+        <a href="https://bigboolmusic.bandcamp.com/"><img src="https://i.ibb.co/Hq8tDy6/releasesframe-010001.png" alt="Image 3"></a>
+        <a href="blog.html"><img src="https://i.ibb.co/G5z05Sn/freebiesframe-010001.png" alt="Image 4"></a>
+        <a href="game.html"><img src="https://i.ibb.co/6vct8HJ/gamesframe-010001.png" alt="Image 5"></a>
+    </div>
+
+    <div class="container">
+        <h1>for any inquiries fill out the form below 🫡</h1>
+        <form action="https://formspree.io/f/your-form-endpoint" method="POST">
+            <label for="name">name</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">email</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="message">message</label>
+            <textarea id="message" name="message" rows="6" required></textarea>
+            
+            <button type="submit">SEND</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIG BOOL STUDIO</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 3px;
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .thumbnails {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .thumbnail img {
+            width: 88px; /* Adjust thumbnail size */
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .thumbnail img:hover {
+            transform: scale(1.1); /* Zoom effect on hover */
+        }
+        .game-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        canvas {
+            border: 1px solid #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="thumbnails">
+        <div class="thumbnail"><a href="home.html"><img src="https://i.ibb.co/SVTHQD2/homeeeepageframe-020002.png" alt="Thumbnail 1"></a></div>
+        <div class="thumbnail"><a href="https://bigboolstudio.bigcartel.com"><img src="https://i.ibb.co/ZKrdfK4/merchframe-020001.png" alt="Thumbnail 2"></a></div>
+        <div class="thumbnail"><a href="blog.html"><img src="https://i.ibb.co/G5z05Sn/freebiesframe-010001.png" alt="Thumbnail 3"></a></div>
+        <div class="thumbnail"><a href="https://bigboolmusic.bandcamp.com/"><img src="https://i.ibb.co/DMLXJmH/releasesframe-020001.png" alt="Thumbnail 4"></a></div>
+        <div class="thumbnail"><a href="contact.html"><img src="https://i.ibb.co/cL9220J/contact-frame-020001.png" alt="Thumbnail 5"></a></div>
+    </div>
+    <h1>"big bool platformer"</h1>
+    <div class="game-container">
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+    </div>
+    <script src="binjgb.js"></script>
+</body>
+</html>
