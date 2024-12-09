@@ -35,6 +35,17 @@
             max-width: 100%;
             height: auto;
         }
+        .hover-text {
+            position: relative;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            opacity: 1; /* Always visible */
+            transition: opacity 0.3s ease;
+        }
         .nav-thumbnail {
             position: absolute;
             top: 50%;
@@ -111,6 +122,7 @@
 <body>
     <div class="container">
         <div class="gallery-container">
+            <div class="hover-text" id="hoverText">Hover Text Here</div>
             <button class="nav-thumbnail left" id="leftThumbnail" disabled>
                 <img src="https://i.ibb.co/TPvmp8H/left.png" alt="Previous">
             </button>
@@ -156,21 +168,57 @@
 
     <script>
         const galleryItems = [
-            "https://i.ibb.co/Y3xTv5b/mentat.png",
-            "https://i.ibb.co/Yj1mZCz/grad.png",
-            "https://i.ibb.co/5sB9kxg/itslikebasketball.png",
-            "https://i.ibb.co/SwnpvBc/dryalls.png",
-            "https://i.ibb.co/fp7h32z/gato.png",
-            "https://i.ibb.co/44zqk59/tostay.png"
+            {
+                src: "https://i.ibb.co/Y3xTv5b/mentat.png",
+                text: "Mentat by Plaza Llama (shot, edited & produced in 2023)"
+            },
+            {
+                src: "https://i.ibb.co/Yj1mZCz/grad.png",
+                text: "Graduation by Plaza Llama (shot, edited & produced in 2023)"
+            },
+            {
+                src: "https://i.ibb.co/5sB9kxg/itslikebasketball.png",
+                text: "its like basketball by MIKE (color-graded in 2019)"
+            },
+            {
+                src: "https://i.ibb.co/SwnpvBc/dryalls.png",
+                text: "Dry Alls by Plaza Llama (shot, rendered, edited & produced in 2022)"
+            },
+            {
+                src: "https://i.ibb.co/jGX8XFC/4-real.png",
+                text: "4 REAL by Plaza Llama (rendered in 2023)"
+            },
+            {
+                src: "https://i.ibb.co/fp7h32z/gato.png",
+                text: "Gato by Plaza Llama (shot, edited & produced in 2019)"
+            },
+            {
+                src: "https://i.ibb.co/44zqk59/tostay.png",
+                text: "To Stay by Adé Hakim (shot & edited in 2019)"
+            },
+            {
+                src: "https://i.ibb.co/b25w1zV/awakening.png",
+                text: "Awakening by Plaza Llama (shot, edited & produced in 2016)"
+            },
+            {
+                src: "https://i.ibb.co/8x15L0b/YETI.png",
+                text: "YETI by Plaza Llama (shot, edited & produced in 2013)"
+            },
+            {
+                src: "https://i.ibb.co/fN0KQh3/one-arizona.png",
+                text: "One Arizona by Plaza Llama (shot & edited in 2013)"
+            }
         ];
         let currentIndex = 0;
 
         const galleryItem = document.getElementById("galleryItem");
+        const hoverText = document.getElementById("hoverText");
         const leftThumbnail = document.getElementById("leftThumbnail");
         const rightThumbnail = document.getElementById("rightThumbnail");
 
         function updateGallery() {
-            galleryItem.src = galleryItems[currentIndex];
+            galleryItem.src = galleryItems[currentIndex].src;
+            hoverText.textContent = galleryItems[currentIndex].text;
             leftThumbnail.disabled = currentIndex === 0;
             rightThumbnail.disabled = currentIndex === galleryItems.length - 1;
         }
