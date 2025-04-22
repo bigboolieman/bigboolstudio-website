@@ -1,160 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>bigboolstudio - EN</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            background-color: black;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 25px;
-        }
-        .container {
-            width: 100%;
-            max-width: 690px;
-            text-align: center;
-            background-color: black;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fake Mac UI</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .icon span {
+      color: white;
+    }
 
-        .main-image {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 25px;
-            cursor: pointer;
-        }
+    .icon img {
+      transition: all 0.3s ease;
+    }
 
-        .thumbnails-wrapper {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-bottom: 25px;
-        }
-        .thumbnail {
-            display: block;
-            width: calc(20% - 18px);
-            max-width: 120px;
-            position: relative;
-            overflow: hidden;
-        }
-        .thumbnail-inner {
-            position: relative;
-            width: 100%;
-            padding-top: 100%; /* 1:1 aspect ratio */
-        }
-        .thumbnail img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.0s ease, opacity 0.3s ease;
-        }
-        .thumbnail .hover-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 0.0s ease, transform 0.3s ease;
-        }
-        .thumbnail:hover .thumbnail-inner img {
-            transform: scale(1.02);
-            opacity: 0.8;
-        }
-        .thumbnail:hover .hover-image {
-            opacity: 1;
-            transform: scale(1.00);
-        }
-
-        @media (max-width: 600px) {
-            .thumbnails-wrapper {
-                gap: 15px;
-            }
-            .thumbnail {
-                width: calc(33.333% - 15px);
-                max-width: 100px;
-            }
-        }
-    </style>
+    .window-header {
+      cursor: move;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Main Image with Click Change -->
-        <a href="home.html" id="main-image-link">
-            <img 
-                src="https://i.ibb.co/1fz1Nk56/LPBBSvv2.png" 
-                alt="Main Image" 
-                class="main-image" 
-                id="main-image"
-                onclick="changeImage(event)">
-        </a>
-        
-        <!-- Thumbnails Section -->
-        <div class="thumbnails-wrapper">
-            <a href="https://merch.bigboolstudio.com/" class="thumbnail">
-                <div class="thumbnail-inner">
-                    <img src="https://i.ibb.co/gZpkpQL/thumbnail-merch.png" alt="Merch">
-                    <img src="https://i.ibb.co/2tpbChC/thumbnail-merch-hover.png" alt="Merch Hover" class="hover-image">
-                </div>
-            </a>
-            <a href="https://bigboolmusic.bandcamp.com/" class="thumbnail">
-                <div class="thumbnail-inner">
-                    <img src="https://i.ibb.co/hYXRDPR/thumbnail-drops.png" alt="drops">
-                    <img src="https://i.ibb.co/vYjHGbJ/thumbnail-drops-hover.png" alt="Releases Hover" class="hover-image">
-                </div>
-            </a>
-            <a href="blog.html" class="thumbnail">
-                <div class="thumbnail-inner">
-                    <img src="https://i.ibb.co/Fqk6FhL/thumbnail-blog.png" alt="blog">
-                    <img src="https://i.ibb.co/FHn46VW/thumbnail-blog-hover.png" alt="Freebies Hover" class="hover-image">
-                </div>
-            </a>
-            <a href="https://linktr.ee/bigboolstudio" class="thumbnail">
-                <div class="thumbnail-inner">
-                    <img src="https://i.ibb.co/wMLhYMp/thumbnail-links.png" alt="Links">
-                    <img src="https://i.ibb.co/L1HFS5T/thumbnail-links-hover.png" alt="Games Hover" class="hover-image">
-                </div>
-            </a>
-            <a href="https://buymeacoffee.com/bigboolstudio" class="thumbnail">
-                <div class="thumbnail-inner">
-                    <img src="https://i.ibb.co/kmJtx6B/thumbnail-donate.png" alt="Contact">
-                    <img src="https://i.ibb.co/M9SzXnm/thumbnail-support-hover.png" alt="Contact Hover" class="hover-image">
-                </div>
-            </a>
+  <div id="desktop">
+    <a href="https://merch.bigboolstudio.com">
+      <div class="icon" style="top: 50px; left: 50px;">
+        <img src="assets/icons/merch.png" data-hover="assets/icons/merch-hover.png" alt="merch" />
+        <span>merch</span>
+      </div>
+    </a>
+
+    <a href="https://blog.bigboolstudio.com">
+      <div class="icon" style="top: 140px; left: 50px;">
+        <img src="assets/icons/blog.png" data-hover="assets/icons/blog-hover.png" alt="blog" />
+        <span>blog</span>
+      </div>
+    </a>
+
+    <a href="https://bigboolstudio.com/contact">
+      <div class="icon" style="top: 230px; left: 50px;">
+        <img src="assets/icons/contact.png" data-hover="assets/icons/contact-hover.png" alt="contact" />
+        <span>contact</span>
+      </div>
+    </a>
+
+    <a href="https://buymeacoffee.com/bigboolstudio">
+      <div class="icon" style="top: 320px; left: 50px;">
+        <img src="assets/icons/support.png" data-hover="assets/icons/support-hover.png" alt="support" />
+        <span>support</span>
+      </div>
+    </a>
+
+    <a href="https://bigboolstudio.com/drops">
+      <div class="icon" style="top: 50px; left: 140px;">
+        <img src="assets/icons/drops.png" data-hover="assets/icons/drops-hover.png" alt="drops" />
+        <span>drops</span>
+      </div>
+    </a>
+
+    <a href="https://bigboolstudio.com/portfolio">
+      <div class="icon" style="top: 140px; left: 140px;">
+        <img src="assets/icons/portfolio.png" data-hover="assets/icons/portfolio-hover.png" alt="portfolio" />
+        <span>portfolio</span>
+      </div>
+    </a>
+
+    <a href="https://games.bigboolstudio.com">
+      <div class="icon" style="top: 230px; left: 140px;">
+        <img src="assets/icons/games.png" data-hover="assets/icons/games-hover.png" alt="games" />
+        <span>games</span>
+      </div>
+    </a>
+
+    <a href="https://bigboolstudio.com/links">
+      <div class="icon" style="top: 50px; left: 230px;">
+        <img src="assets/icons/links.png" data-hover="assets/icons/links-hover.png" alt="links" />
+        <span>link(s)</span>
+      </div>
+    </a>
+
+    <!-- Fake Error Window -->
+    <div class="window" id="welcome" style="top: 140px; left: 300px;">
+      <div class="window-header"><i>welcome 2</i> big bool studio</div>
+      <div class="window-body">
+        <p><strong>this website is designed to be seen on desktop or laptop</strong></p>
+        <ul>
+            <li>new merch, who dis?</li>
+            <li>visit <i>drops</i> to hear new music</li>
+            <li>check out blog for free stuff</li>
+          </ul>
         </div>
+      </div>
+
+      <div class="window" id="announcements" style="top: 330px; left: 550px;">
+      <div class="window-header">content schedule:</div>
+      <div class="window-body">
+        <p><strong>spring/summer updates</strong></p>
+        <ul>    
+            <li>2-3 mixes per week on the channel</li>
+            <li>1-2 livestream(s) per week</li>
+            <li>animated bumps once a week</li>
+            <li><i>summer break giveaway...</i></li>
+        </ul>
+      </div>
     </div>
+  </div>
 
-    <script>
-        function changeImage(event) {
-            // Prevent navigation until the image changes
-            event.preventDefault();
-
-            // Get the main image element and link
-            const mainImage = document.getElementById('main-image');
-            const mainImageLink = document.getElementById('main-image-link');
-
-            // Change the image source
-            mainImage.src = "https://i.ibb.co/1fz1Nk56/LPBBSvv2.png";
-
-            // Redirect after a short delay
-            setTimeout(() => {
-                window.location.href = mainImageLink.href;
-            }, 25); // Adjust the delay as needed
-        }
-    </script>
+  <script>
+    // Icon hover logic
+    document.querySelectorAll('.icon img').forEach(img => {
+      const originalSrc = img.src;
+      const hoverSrc = img.getAttribute('data-hover');
+  
+      img.addEventListener('mouseenter', () => {
+        img.src = hoverSrc;
+      });
+  
+      img.addEventListener('mouseleave', () => {
+        img.src = originalSrc;
+      });
+    });
+  
+    // Window drag logic
+    document.querySelectorAll('.window').forEach(windowEl => {
+      const header = windowEl.querySelector('.window-header');
+      let isDragging = false;
+      let offsetX = 0, offsetY = 0;
+  
+      // Make sure window is absolutely positioned
+      const computedStyle = window.getComputedStyle(windowEl);
+      if (computedStyle.position !== 'absolute') {
+        const rect = windowEl.getBoundingClientRect();
+        windowEl.style.position = 'absolute';
+        windowEl.style.top = rect.top + 'px';
+        windowEl.style.left = rect.left + 'px';
+      }
+  
+      header.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        const rect = windowEl.getBoundingClientRect();
+        offsetX = e.clientX - rect.left;
+        offsetY = e.clientY - rect.top;
+        windowEl.style.zIndex = 1000;
+      });
+  
+      document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        windowEl.style.left = `${e.clientX - offsetX}px`;
+        windowEl.style.top = `${e.clientY - offsetY}px`;
+      });
+  
+      document.addEventListener('mouseup', () => {
+        isDragging = false;
+      });
+    });
+  </script>  
 </body>
 </html>
