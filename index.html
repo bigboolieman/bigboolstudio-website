@@ -28,7 +28,7 @@
       </div>
     </a>
 
-    <a href="https://blog.bigboolstudio.com">
+    <a href="blog.html">
       <div class="icon" style="top: 140px; left: 50px;">
         <img src="assets/icons/blog.png" data-hover="assets/icons/blog-hover.png" alt="blog" />
         <span>blog</span>
@@ -49,7 +49,7 @@
       </div>
     </a>
 
-    <a href="https://bigboolstudio.com/drops">
+    <a href="https://bigboolmusic.bandcamp.com/music">
       <div class="icon" style="top: 50px; left: 140px;">
         <img src="assets/icons/drops.png" data-hover="assets/icons/drops-hover.png" alt="drops" />
         <span>drops</span>
@@ -70,7 +70,7 @@
       </div>
     </a>
 
-    <a href="https://bigboolstudio.com/links">
+    <a href="https://linktr.ee/bigboolstudio">
       <div class="icon" style="top: 50px; left: 230px;">
         <img src="assets/icons/links.png" data-hover="assets/icons/links-hover.png" alt="links" />
         <span>link(s)</span>
@@ -104,54 +104,7 @@
     </div>
   </div>
 
-  <script>
-    // Icon hover logic
-    document.querySelectorAll('.icon img').forEach(img => {
-      const originalSrc = img.src;
-      const hoverSrc = img.getAttribute('data-hover');
-  
-      img.addEventListener('mouseenter', () => {
-        img.src = hoverSrc;
-      });
-  
-      img.addEventListener('mouseleave', () => {
-        img.src = originalSrc;
-      });
-    });
-  
-    // Window drag logic
-    document.querySelectorAll('.window').forEach(windowEl => {
-      const header = windowEl.querySelector('.window-header');
-      let isDragging = false;
-      let offsetX = 0, offsetY = 0;
-  
-      // Make sure window is absolutely positioned
-      const computedStyle = window.getComputedStyle(windowEl);
-      if (computedStyle.position !== 'absolute') {
-        const rect = windowEl.getBoundingClientRect();
-        windowEl.style.position = 'absolute';
-        windowEl.style.top = rect.top + 'px';
-        windowEl.style.left = rect.left + 'px';
-      }
-  
-      header.addEventListener('mousedown', (e) => {
-        isDragging = true;
-        const rect = windowEl.getBoundingClientRect();
-        offsetX = e.clientX - rect.left;
-        offsetY = e.clientY - rect.top;
-        windowEl.style.zIndex = 1000;
-      });
-  
-      document.addEventListener('mousemove', (e) => {
-        if (!isDragging) return;
-        windowEl.style.left = `${e.clientX - offsetX}px`;
-        windowEl.style.top = `${e.clientY - offsetY}px`;
-      });
-  
-      document.addEventListener('mouseup', () => {
-        isDragging = false;
-      });
-    });
-  </script>  
+  <!-- Add script link here -->
+  <script src="script.js"></script>
 </body>
 </html>
