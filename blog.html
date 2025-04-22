@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>big bool studio</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .icon span {
+      color: white;
+    }
+
+    .icon img {
+      transition: all 0.3s ease;
+    }
+
+    .window-header {
+      cursor: move;
+    }
+  </style>
+</head>
+<body>
+   <!-- Blog Windows -->
+   <div id="blog-windows" style="display: none;">
+    <div class="window" style="top: 100px; left: 100px;">
+      <div class="window-header">blog post: welcome</div>
+      <div class="window-body">
+        <h3>🎉 Welcome to the Blog</h3>
+        <p>This space is where we’ll share updates, freebies, and behind-the-scenes stuff.</p>
+        
+        <img src="assets/sample-image.jpg" alt="blog visual">
+  
+        <video controls>
+          <source src="assets/sample-video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+  
+        <p>Wanna learn more? Visit <a href="https://bigboolstudio.com" target="_blank">our main site</a>.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Icon hover logic
+    document.querySelectorAll('.icon img').forEach(img => {
+      const originalSrc = img.src;
+      const hoverSrc = img.getAttribute('data-hover');
+  
+      img.addEventListener('mouseenter', () => {
+        img.src = hoverSrc;
+      });
+  
+      img.addEventListener('mouseleave', () => {
+        img.src = originalSrc;
+      });
+    });
+  
+    // Window drag logic
+    document.querySelectorAll('.window').forEach(windowEl => {
+      const header = windowEl.querySelector('.window-header');
+      let isDragging = false;
+      let offsetX = 0, offsetY = 0;
+  
+      // Make sure window is absolutely positioned
+      const computedStyle = window.getComputedStyle(windowEl);
+      if (computedStyle.position !== 'absolute') {
+        const rect = windowEl.getBoundingClientRect();
+        windowEl.style.position = 'absolute';
+        windowEl.style.top = rect.top + 'px';
+        windowEl.style.left = rect.left + 'px';
+      }
+  
+      header.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        const rect = windowEl.getBoundingClientRect();
+        offsetX = e.clientX - rect.left;
+        offsetY = e.clientY - rect.top;
+        windowEl.style.zIndex = 1000;
+      });
+  
+      document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        windowEl.style.left = `${e.clientX - offsetX}px`;
+        windowEl.style.top = `${e.clientY - offsetY}px`;
+      });
+  
+      document.addEventListener('mouseup', () => {
+        isDragging = false;
+      });
+    });
+  </script> 
+</body>
+</html>
