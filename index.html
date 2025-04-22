@@ -28,11 +28,11 @@
       </div>
     </a>
 
-    <a href="blog.html">
-      <div class="icon" style="top: 140px; left: 50px;">
+    <a href="blog.html"></a> 
+     <div class="icon" style="top: 140px; left: 50px;">
         <img src="assets/icons/blog.png" data-hover="assets/icons/blog-hover.png" alt="blog" />
         <span>blog</span>
-      </div>
+      </div>    
     </a>
 
     <a href="https://bigboolstudio.com/contact">
@@ -104,7 +104,54 @@
     </div>
   </div>
 
-  <!-- Add script link here -->
-  <script src="script.js"></script>
+  <script>
+    // Icon hover logic
+    document.querySelectorAll('.icon img').forEach(img => {
+      const originalSrc = img.src;
+      const hoverSrc = img.getAttribute('data-hover');
+  
+      img.addEventListener('mouseenter', () => {
+        img.src = hoverSrc;
+      });
+  
+      img.addEventListener('mouseleave', () => {
+        img.src = originalSrc;
+      });
+    });
+  
+    // Window drag logic
+    document.querySelectorAll('.window').forEach(windowEl => {
+      const header = windowEl.querySelector('.window-header');
+      let isDragging = false;
+      let offsetX = 0, offsetY = 0;
+  
+      // Make sure window is absolutely positioned
+      const computedStyle = window.getComputedStyle(windowEl);
+      if (computedStyle.position !== 'absolute') {
+        const rect = windowEl.getBoundingClientRect();
+        windowEl.style.position = 'absolute';
+        windowEl.style.top = rect.top + 'px';
+        windowEl.style.left = rect.left + 'px';
+      }
+  
+      header.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        const rect = windowEl.getBoundingClientRect();
+        offsetX = e.clientX - rect.left;
+        offsetY = e.clientY - rect.top;
+        windowEl.style.zIndex = 1000;
+      });
+  
+      document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        windowEl.style.left = `${e.clientX - offsetX}px`;
+        windowEl.style.top = `${e.clientY - offsetY}px`;
+      });
+  
+      document.addEventListener('mouseup', () => {
+        isDragging = false;
+      });
+    });
+  </script> 
 </body>
 </html>
