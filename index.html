@@ -18,6 +18,147 @@
     .window-header {
       cursor: move;
     }
+
+    #archive-window {
+      max-height: 78vh;
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+    }
+
+    #archive-window * {
+      box-sizing: border-box;
+    }
+
+    #archive-window .window-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .archive-close {
+      cursor: pointer;
+      opacity: 0.7;
+      padding: 0 4px;
+    }
+
+    .archive-close:hover {
+      opacity: 1;
+    }
+
+    #archive-window .window-body {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .archive-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    #archive-search {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 6px 8px;
+      font-family: inherit;
+      font-size: 0.9em;
+      border: 1px solid #999;
+      background: #fff;
+      color: #111;
+    }
+
+    .archive-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .archive-chip {
+      font-size: 0.75em;
+      padding: 3px 9px;
+      border: 1px solid #888;
+      background: #eee;
+      color: #222;
+      cursor: pointer;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .archive-chip.active {
+      background: #333;
+      color: #fff;
+      border-color: #333;
+    }
+
+    .archive-count {
+      font-size: 0.80em;
+      opacity: 0.85;
+      margin: 8px 0 4px;
+      flex-shrink: 0;
+    }
+
+    .archive-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      overflow-y: auto;
+      padding-right: 6px;
+    }
+
+    .archive-card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      font-size: .80em;
+      line-height: 1.3;
+      font-weight: 600;
+    }
+
+    .archive-card .thumb {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      display: block;
+      background: #222;
+      border: 1px solid #000;
+    }
+
+    .archive-card .thumb.color-block {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 0.85em;
+      letter-spacing: 0.03em;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    }
+
+    .archive-card .card-title {
+      margin-top: 6px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .archive-card.is-wip {
+      cursor: default;
+      opacity: 0.75;
+    }
+
+    @media (max-width: 700px) {
+      #archive-window {
+        width: 90vw !important;
+        left: 5vw !important;
+      }
+      .archive-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
   </style>
 </head>
 <body>
@@ -135,7 +276,7 @@
     </a>
 
     <!-- Fake Error Window -->
-    <div class="window" id="welcome" style="top: 140px; left: 540px;">
+    <div class="window" id="welcome" style="top: 70px; left: 540px;">
       <div class="window-header"><i>greetings from cyberspace</i></div>
       <div class="window-body">
         </ul>
@@ -149,7 +290,7 @@
         </div>
       </div>
 
-      <div class="window" id="announcements" style="top: 50px; left: 850px;">
+      <div class="window" id="announcements" style="top: 540px; left: 540px;">
       <div class="window-header">content schedule:</div>
       <div class="window-body">
         <p><strong>summer updates</strong></p>
@@ -158,6 +299,20 @@
             <li>new music on the way, check blog for more details</li>
             <li>tune into the <i>24/7 twitch stream</i></li>
         </ul>
+      </div>
+    </div>
+
+    <div class="window" id="archive-window" style="top: 70px; left: 855px;">
+      <div class="window-header">
+        <span>mix archive</span>
+      </div>
+      <div class="window-body">
+        <div class="archive-controls">
+          <input type="text" id="archive-search" placeholder="search a mix, game, or composer..." />
+          <div class="archive-chips" id="archive-chips"></div>
+        </div>
+        <div class="archive-count" id="archive-count"></div>
+        <div class="archive-grid" id="archive-grid"></div>
       </div>
     </div>
   </div>
@@ -211,5 +366,116 @@
       });
     });
   </script> 
+  <script id="archive-data" type="application/json">[{"title": "groove system 💿 hideki naganuma edition - vol. 1", "status": "published", "thumbnail": "https://i.ytimg.com/vi/FCYDReK1xAs/hq720.jpg", "video_url": "https://www.youtube.com/watch?v=FCYDReK1xAs&t=258s", "date": "2026-04-10", "mix_type": "composer"}, {"title": "groove system 💿 shinji hosoe - vol. 2", "status": "published", "thumbnail": "https://i.ytimg.com/vi/h1fW1G4p5VI/hq720.jpg", "video_url": "https://www.youtube.com/watch?v=h1fW1G4p5VI&t=420s", "date": "2026-04-20", "mix_type": "composer"}, {"title": "groove system 💿 shoji meguro - vol. 3", "status": "published", "thumbnail": "https://i.ytimg.com/vi/xWvo-fQpbCQ/hq720.jpg", "video_url": "https://www.youtube.com/watch?v=xWvo-fQpbCQ&t=1s", "date": "2026-05-01", "mix_type": "composer"}, {"title": "groove system 💿 masashi hamauza - vol. 4", "status": "published", "thumbnail": "https://i.ytimg.com/vi/VSMSt6VYrC8/hq720.jpg", "video_url": "https://www.youtube.com/watch?v=VSMSt6VYrC8", "date": "2026-05-15", "mix_type": "composer"}, {"title": "groove system 💿 richard jacques - vol. 5", "status": "published", "thumbnail": "https://i.ytimg.com/vi/PBPdnMM7Wog/hq720.jpg", "video_url": "https://www.youtube.com/watch?v=PBPdnMM7Wog&t=3385s", "date": "2026-05-29", "mix_type": "composer"}, {"title": "groove system 💿 nobuyoshi sano - vol. 6", "status": "published", "thumbnail": "https://i.ytimg.com/vi/SE0NnbBuZD8/hq720.jpg", "video_url": "https://www.youtube.com/watch?v=SE0NnbBuZD8&t=686s", "date": "2026-06-12", "mix_type": "composer"}, {"title": "groove system 💿 yoko shimomura - vol. 7", "status": "published", "thumbnail": "https://i.ytimg.com/vi/RdMwDsS2dFE/hq720.jpg", "video_url": "https://www.youtube.com/watch?v=RdMwDsS2dFE", "date": "2026-06-26", "mix_type": "composer"}, {"title": "groove system 💿 ayako saso - vol. 8", "status": "published", "thumbnail": "https://i.ytimg.com/vi/1vdgXrZJDFY/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=1vdgXrZJDFY", "date": "2026-09-11", "mix_type": "composer"}, {"title": "melancholic aura 💿 akira yamaoka edition - vol. 1", "status": "work in progress", "thumbnail": "#000000", "video_url": null, "date": "2026-10-02", "mix_type": "composer"}, {"title": "music to horse around to 🐴 chill horse racing vgm - vol. 1", "thumbnail": "https://i.ytimg.com/vi/WmCqSX_ttJs/hq720.jpg", "video_url": "https://www.youtube.com/watch?v=WmCqSX_ttJs", "date": "2026-03-20", "mix_type": "themed", "status": "published"}, {"title": "music to fish to 🎣 cozy fishing vgm - vol. 1", "thumbnail": "https://i.ytimg.com/vi/qzPWlLWTJVM/hq720.jpg", "video_url": "https://www.youtube.com/watch?v=qzPWlLWTJVM&t=927s", "date": "2026-03-30", "mix_type": "themed", "status": "published"}, {"title": "digital retail therapy 🛒 shopping vgm - vol. 1", "thumbnail": "https://i.ytimg.com/vi/9m04sz61Vys/hq720.jpg", "video_url": "https://www.youtube.com/watch?v=9m04sz61Vys&t=2109s", "date": "2026-04-06", "mix_type": "themed", "status": "published"}, {"title": "music to drive fast to 🏁 high speed racing vgm - vol. 1", "thumbnail": "https://i.ytimg.com/vi/_VPHxu2WSxU/hq720.jpg", "video_url": "https://www.youtube.com/watch?v=_VPHxu2WSxU&t=170s", "date": "2026-04-17", "mix_type": "themed", "status": "published"}, {"title": "sounds of spring 🌸 vgm mix", "thumbnail": "https://i.ytimg.com/vi/k8YI19lBcuw/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=k8YI19lBcuw", "date": "2026-04-27", "mix_type": "themed", "status": "published"}, {"title": "music to walk to 🕺 chill vgm mix - vol. 1", "thumbnail": "https://i.ytimg.com/vi/SBBWEVhZoqQ/hq720.jpg", "video_url": "https://www.youtube.com/watch?v=SBBWEVhZoqQ&t=1548s", "date": "2026-05-04", "mix_type": "themed", "status": "published"}, {"title": "music to press start 2 🎮 vol. 1", "thumbnail": "https://i.ytimg.com/vi/Lbh1AJWMR-s/hq720.jpg", "video_url": "https://www.youtube.com/watch?v=Lbh1AJWMR-s&t=11s", "date": "2026-05-12", "mix_type": "themed", "status": "published"}, {"title": "champion sound 🏆 sporting event vgm", "thumbnail": "https://i.ytimg.com/vi/5yiY71c9-dY/hq720.jpg", "video_url": "https://www.youtube.com/watch?v=5yiY71c9-dY&t=37s", "date": "2026-05-25", "mix_type": "themed", "status": "published"}, {"title": "nostalgic virtual hangout spots 📶 vol. 1", "thumbnail": "https://i.ytimg.com/vi/Ox_Rjd_-nh0/hq720.jpg", "video_url": "https://www.youtube.com/watch?v=Ox_Rjd_-nh0&t=112s", "date": "2026-06-05", "mix_type": "themed", "status": "published"}, {"title": "blissful simulation 🏙️ city builder edition - vol. 1", "thumbnail": "https://i.ytimg.com/vi/EwH8Dy2lyOA/hq720.jpg", "video_url": "https://www.youtube.com/watch?v=EwH8Dy2lyOA&t=2s", "date": "2026-06-19", "mix_type": "themed", "status": "published"}, {"title": "sounds of summer ☀️ vgm mix", "thumbnail": "https://i.ytimg.com/vi/i-z4mR28j3o/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=i-z4mR28j3o", "date": "2026-06-22", "mix_type": "themed", "status": "published"}, {"title": "sparring music 🤜 fighting vgm - vol. 1", "thumbnail": "https://i.ytimg.com/vi/BZm79wUM2F4/hq720.jpg", "video_url": "https://www.youtube.com/watch?v=BZm79wUM2F4&t=144s", "date": "2026-07-10", "mix_type": "themed", "status": "published"}, {"title": "grand adventure 🌏 jrpg mix - vol. 1", "thumbnail": "https://i.ytimg.com/vi/-oNmUZEPCFU/hq720.jpg", "video_url": "https://www.youtube.com/watch?v=-oNmUZEPCFU&t=130s", "date": "2026-07-17", "mix_type": "themed", "status": "published"}, {"title": "more music to drive fast to 🏁 high speed racing vgm - vol. 2", "thumbnail": "https://i.ytimg.com/vi/dv4Ejs2u5eY/hq720.jpg", "video_url": "https://www.youtube.com/watch?v=dv4Ejs2u5eY&", "date": "2026-07-24", "mix_type": "themed", "status": "published"}, {"title": "strictly deep cuts 💿 overlooked vgm mix - vol. 1", "thumbnail": "https://i.ytimg.com/vi/T8vsvpWEn2U/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=T8vsvpWEn2U", "date": "2026-07-31", "mix_type": "themed", "status": "published"}, {"title": "late night session 🌙 after hours vgm mix", "thumbnail": "https://i.ytimg.com/vi/VYmVt6sJk-A/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=VYmVt6sJk-A", "date": "2026-08-07", "mix_type": "themed", "status": "published"}, {"title": "memories of optimism 🌐 frutiger aero vgm mix", "thumbnail": "https://i.ytimg.com/vi/TsZeT3OWAlQ/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=TsZeT3OWAlQ", "date": "2026-08-14", "mix_type": "themed", "status": "published"}, {"title": "chrome dreams 💿 mecha vgm mix", "thumbnail": "https://i.ytimg.com/vi/EKXFlAK_FX8/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=EKXFlAK_FX8", "date": "2026-08-21", "mix_type": "themed", "status": "published"}, {"title": "massive multiplayer zone 🛜 - mmo vgm mix", "thumbnail": "https://i.ytimg.com/vi/G8NpktMnLKU/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=G8NpktMnLKU", "date": "2026-09-04", "mix_type": "themed", "status": "published"}, {"title": "cozy autumn 🍂 fall vgm mix", "status": "work in progress", "thumbnail": "#DF440D", "video_url": null, "date": "2026-09-25", "mix_type": "themed"}, {"title": "Nintendo 3DS music (member edition)", "mix_type": "console", "status": "published", "thumbnail": "https://i.ytimg.com/vi/caQ_H-FbLsM/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=caQ_H-FbLsM", "date": "2025-09-15"}, {"title": "Nintendo 64 music (vgm mix)", "mix_type": "console", "status": "published", "thumbnail": "https://i.ytimg.com/vi/xOtdlVEu5oI/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=xOtdlVEu5oI", "date": "2025-09-15"}, {"title": "Nintendo 64 music (vgm mix) pt. 2", "mix_type": "console", "status": "published", "thumbnail": "https://i.ytimg.com/vi/DU-MxfkL69A/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=DU-MxfkL69A", "date": "2025-09-15"}, {"title": "Nintendo DS music (vgm mix)", "mix_type": "console", "status": "published", "thumbnail": "https://i.ytimg.com/vi/PAQDwNfnBRo/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=PAQDwNfnBRo", "date": "2025-09-15"}, {"title": "Nintendo Wii music (vgm mix)", "mix_type": "console", "status": "published", "thumbnail": "https://i.ytimg.com/vi/YRINjkbI_to/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=YRINjkbI_to", "date": "2025-09-15"}, {"title": "PS Vita music (vgm mix)", "mix_type": "console", "status": "published", "thumbnail": "https://i.ytimg.com/vi/LAIxQ_r8Qsw/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=LAIxQ_r8Qsw", "date": "2025-09-15"}, {"title": "PS2 music (member edition)", "mix_type": "console", "status": "published", "thumbnail": "https://i.ytimg.com/vi/2LfdrjIPLT0/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=2LfdrjIPLT0", "date": "2025-09-15"}, {"title": "PS3 music (member edition)", "mix_type": "console", "status": "published", "thumbnail": "https://i.ytimg.com/vi/SIM039V6Qtk/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=SIM039V6Qtk", "date": "2025-09-15"}, {"title": "PSOne music (vgm mix)", "mix_type": "console", "status": "published", "thumbnail": "https://i.ytimg.com/vi/fnGhINiLB1w/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=fnGhINiLB1w", "date": "2025-09-15"}, {"title": "Sega Dreamcast music (vgm mix)", "mix_type": "console", "status": "published", "thumbnail": "https://i.ytimg.com/vi/OlmemAvbVzo/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=OlmemAvbVzo", "date": "2025-09-15"}, {"title": "Sega Saturn music (vgm mix)", "mix_type": "console", "status": "published", "thumbnail": "https://i.ytimg.com/vi/ATTSovlR-n4/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=ATTSovlR-n4", "date": "2025-09-15"}, {"title": "Xbox 360 music (member edition)", "mix_type": "console", "status": "published", "thumbnail": "https://i.ytimg.com/vi/uKqOHtp443Y/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=uKqOHtp443Y", "date": "2025-09-15"}, {"title": "sounds of the Nintendo Wii", "mix_type": "console", "status": "published", "thumbnail": "https://i.ytimg.com/vi/rb6uTJQk3Zo/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=rb6uTJQk3Zo", "date": "2025-09-15"}, {"title": "Nintendo 3DS music (vgm mix)", "mix_type": "console", "status": "published", "thumbnail": "https://i.ytimg.com/vi/oKao9LAzkUc/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=oKao9LAzkUc", "date": "2025-11-15"}, {"title": "Sega Dreamcast music (vgm mix) pt. 2", "mix_type": "console", "status": "published", "thumbnail": "https://i.ytimg.com/vi/5rbnBuG03lg/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=5rbnBuG03lg", "date": "2025-11-15"}, {"title": "PSP music (member edition vgm mix)", "mix_type": "console", "status": "published", "thumbnail": "https://i.ytimg.com/vi/XMRDaLKK8SQ/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=XMRDaLKK8SQ", "date": "2026-01-15"}, {"title": "sounds of the arcade floor 💿 vol. 1 (vgm mix)", "mix_type": "console", "status": "published", "thumbnail": "https://i.ytimg.com/vi/77ecEF2j3CE/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=77ecEF2j3CE", "date": "2026-03-15"}, {"title": "sounds of the Nintendo Wii U (vgm mix)", "mix_type": "console", "status": "published", "thumbnail": "https://i.ytimg.com/vi/FLXAj3MDn2M/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=FLXAj3MDn2M", "date": "2026-04-15"}, {"title": "sounds of the PS2 (vgm mix)", "mix_type": "console", "status": "published", "thumbnail": "https://i.ytimg.com/vi/h2LWaSIm36s/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=h2LWaSIm36s", "date": "2026-05-15"}, {"title": "sounds of the PS3 (vgm mix)", "mix_type": "console", "status": "published", "thumbnail": "https://i.ytimg.com/vi/ii0LcIBj8DM/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=ii0LcIBj8DM", "date": "2026-05-15"}, {"title": "sounds of the XBOX 360 (vgm mix)", "mix_type": "console", "status": "published", "thumbnail": "https://i.ytimg.com/vi/6_K-3YyqGog/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=6_K-3YyqGog", "date": "2026-05-15"}, {"title": "sounds of the PSP (vgm mix)", "mix_type": "console", "status": "published", "thumbnail": "https://i.ytimg.com/vi/4ifCI-xMjmA/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=4ifCI-xMjmA", "date": "2026-06-15"}, {"title": "sounds of the original Xbox (vgm mix)", "mix_type": "console", "status": "published", "thumbnail": "https://i.ytimg.com/vi/ha4FerFQYso/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=ha4FerFQYso", "date": "2026-06-15"}, {"title": "planetary sounds 🪐 sega saturn vgm", "mix_type": "console", "status": "published", "thumbnail": "https://i.ytimg.com/vi/MZ8eVEw1nmI/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=MZ8eVEw1nmI", "date": "2026-07-15"}, {"title": "sounds of the Nintendo Gamecube (vgm mix)", "mix_type": "console", "status": "published", "thumbnail": "https://i.ytimg.com/vi/U1UhDqbIWBA/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=U1UhDqbIWBA", "date": "2026-07-15"}, {"title": "dual screen energy ✍🏽 nintendo ds vgm", "mix_type": "console", "status": "work in progress", "thumbnail": "#FFFFFF", "video_url": null, "date": "2026-09-19"}, {"title": "ATLUS music", "mix_type": "studio", "status": "published", "thumbnail": "https://i.ytimg.com/vi/Eq9KKPO8v9g/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=Eq9KKPO8v9g", "date": "2025-09-15"}, {"title": "CAPCOM music", "mix_type": "studio", "status": "published", "thumbnail": "https://i.ytimg.com/vi/FUOGRrnEXzY/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=FUOGRrnEXzY", "date": "2025-09-15"}, {"title": "HAL Laboratory music", "mix_type": "studio", "status": "published", "thumbnail": "https://i.ytimg.com/vi/0XmW3yE4xac/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=0XmW3yE4xac", "date": "2025-09-15"}, {"title": "Hudson Soft music", "mix_type": "studio", "status": "published", "thumbnail": "https://i.ytimg.com/vi/mcGGFPEEjN0/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=mcGGFPEEjN0", "date": "2025-09-15"}, {"title": "JAPAN Studio music", "mix_type": "studio", "status": "published", "thumbnail": "https://i.ytimg.com/vi/mkJgbfXh3uQ/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=mkJgbfXh3uQ", "date": "2025-09-15"}, {"title": "KONAMI music", "mix_type": "studio", "status": "published", "thumbnail": "https://i.ytimg.com/vi/yGaWKPDdlU8/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=yGaWKPDdlU8", "date": "2025-09-15"}, {"title": "SEGA music", "mix_type": "studio", "status": "published", "thumbnail": "https://i.ytimg.com/vi/dx9TyB8cgB0/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=dx9TyB8cgB0", "date": "2025-09-15"}, {"title": "SquareSoft music", "mix_type": "studio", "status": "published", "thumbnail": "https://i.ytimg.com/vi/y4ex1rdbeME/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=y4ex1rdbeME", "date": "2025-09-15"}, {"title": "arc system works music", "mix_type": "studio", "status": "published", "thumbnail": "https://i.ytimg.com/vi/P0zL_SMZHTo/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=P0zL_SMZHTo", "date": "2025-09-15"}, {"title": "bandai namco music", "mix_type": "studio", "status": "published", "thumbnail": "https://i.ytimg.com/vi/iYhBwZOtRTk/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=iYhBwZOtRTk", "date": "2025-09-15"}, {"title": "maxis music", "mix_type": "studio", "status": "published", "thumbnail": "https://i.ytimg.com/vi/jvKXZD2zOv0/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=jvKXZD2zOv0", "date": "2025-09-15"}, {"title": "CyberConnect2 music", "mix_type": "studio", "status": "published", "thumbnail": "https://i.ytimg.com/vi/ku1B1-kAWMU/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=ku1B1-kAWMU", "date": "2025-10-15"}, {"title": "KOEI TECMO music", "mix_type": "studio", "status": "published", "thumbnail": "https://i.ytimg.com/vi/imygOTdwbi8/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=imygOTdwbi8", "date": "2025-11-15"}, {"title": "LEVEL 5 music", "mix_type": "studio", "status": "published", "thumbnail": "https://i.ytimg.com/vi/9PzrwOqJsv8/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=9PzrwOqJsv8", "date": "2025-12-15"}, {"title": "Rare Ltd. music", "mix_type": "studio", "status": "published", "thumbnail": "https://i.ytimg.com/vi/J5d-ZIKXOkQ/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=J5d-ZIKXOkQ", "date": "2026-01-15"}, {"title": "SONIC TEAM music", "mix_type": "studio", "status": "published", "thumbnail": "https://i.ytimg.com/vi/CLepVL516Jg/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=CLepVL516Jg", "date": "2026-01-15"}, {"title": "SEGA AM2 music", "mix_type": "studio", "status": "published", "thumbnail": "https://i.ytimg.com/vi/F9Z2--v0CZ8/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=F9Z2--v0CZ8", "date": "2026-02-15"}, {"title": "sounds of ARIKA", "mix_type": "studio", "status": "published", "thumbnail": "https://i.ytimg.com/vi/KR6K0hGF78U/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=KR6K0hGF78U", "date": "2026-04-15"}, {"title": "sounds of Genki", "mix_type": "studio", "status": "published", "thumbnail": "https://i.ytimg.com/vi/Ypq79QzA5QY/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=Ypq79QzA5QY", "date": "2026-06-15"}, {"title": "sounds of FromSoftware", "mix_type": "studio", "status": "published", "thumbnail": "https://i.ytimg.com/vi/cKjS6lL1fnI/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=cKjS6lL1fnI", "date": "2026-07-15"}, {"title": "PERSONA series music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/hhHopWDPRrY/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=hhHopWDPRrY", "date": "2025-03-26"}, {"title": ".hack music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/ELAkUoCvLxM/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=ELAkUoCvLxM", "date": "2025-09-15"}, {"title": "ACE COMBAT music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/zc3QVghgGJ8/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=zc3QVghgGJ8", "date": "2025-09-15"}, {"title": "ARMORED CORE music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/Y6lpWx0Zp8o/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=Y6lpWx0Zp8o", "date": "2025-09-15"}, {"title": "Animal Crossing music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/Bnlrqq8_TTg/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=Bnlrqq8_TTg", "date": "2025-09-15"}, {"title": "BRAIN AGE music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/gMKdmNaCf18/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=gMKdmNaCf18", "date": "2025-09-15"}, {"title": "Chibi-Robo! music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/j7__IyBSU_U/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=j7__IyBSU_U", "date": "2025-09-15"}, {"title": "DIGIMON music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/pnqDMXQXe58/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=pnqDMXQXe58", "date": "2025-09-15"}, {"title": "DONKEY KONG music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/X3xgxGowc2M/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=X3xgxGowc2M", "date": "2025-09-15"}, {"title": "DRAGON QUEST music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/GTpXC4Ukb6I/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=GTpXC4Ukb6I", "date": "2025-09-15"}, {"title": "ELEVATOR ACTION RETURNS music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/UulJRYGPZX8/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=UulJRYGPZX8", "date": "2025-09-15"}, {"title": "ENTHUSIA professional racing music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/Em89HsRhetU/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=Em89HsRhetU", "date": "2025-09-15"}, {"title": "FINAL FANTASY X music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/cqL8kA9Y8lY/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=cqL8kA9Y8lY", "date": "2025-09-15"}, {"title": "FINAL FANTASY XIII music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/BQ65gzIxONk/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=BQ65gzIxONk", "date": "2025-09-15"}, {"title": "GRAN TURISMO music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/9VRpctQTtoE/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=9VRpctQTtoE", "date": "2025-09-15"}, {"title": "HOT SHOTS GOLF music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/bu1J-Y-bJWE/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=bu1J-Y-bJWE", "date": "2025-09-15"}, {"title": "KINGDOM HEARTS music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/pFoi77MDH1Y/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=pFoi77MDH1Y", "date": "2025-09-15"}, {"title": "MARVEL vs. CAPCOM music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/GyudxDDNjlg/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=GyudxDDNjlg", "date": "2025-09-15"}, {"title": "MEGAMAN music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/LWgqm_il9Wo/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=LWgqm_il9Wo", "date": "2025-09-15"}, {"title": "METAL GEAR SOLID music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/xwuc7QGmKpw/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=xwuc7QGmKpw", "date": "2025-09-15"}, {"title": "NieR music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/gutwXnNPiY8/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=gutwXnNPiY8", "date": "2025-09-15"}, {"title": "PERSONA Q music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/EMhs-antKAA/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=EMhs-antKAA", "date": "2025-09-15"}, {"title": "PHANTASY STAR online music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/y2NgANrf8dw/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=y2NgANrf8dw", "date": "2025-09-15"}, {"title": "POKeMON music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/N0PJA31Nlzg/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=N0PJA31Nlzg", "date": "2025-09-15"}, {"title": "R4: Ridge Racer Type 4 music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/6Z2HAl7KpQQ/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=6Z2HAl7KpQQ", "date": "2025-09-15"}, {"title": "Racing Lagoon music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/ZfhxoXvtTrc/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=ZfhxoXvtTrc", "date": "2025-09-15"}, {"title": "SIMCITY music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/2FFRyNHA-G4/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=2FFRyNHA-G4", "date": "2025-09-15"}, {"title": "SUPER SMASH BROS. music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/GE9QpsBYqxM/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=GE9QpsBYqxM", "date": "2025-09-15"}, {"title": "Space Channel 5 music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/lUO7NbwTdtk/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=lUO7NbwTdtk", "date": "2025-09-15"}, {"title": "TOBAL music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/r__QC-1v-Bg/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=r__QC-1v-Bg", "date": "2025-09-15"}, {"title": "The SiMs music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/fM78-8lO1MA/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=fM78-8lO1MA", "date": "2025-09-15"}, {"title": "Yu-Gi-Oh! music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/_WaEzNdjzbc/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=_WaEzNdjzbc", "date": "2025-09-15"}, {"title": "auto modellista music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/nnVdMvidh_s/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=nnVdMvidh_s", "date": "2025-09-15"}, {"title": "earthBound music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/XO5VY6BInSQ/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=XO5VY6BInSQ", "date": "2025-09-15"}, {"title": "metropolis street racer music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/j57jt93DkkU/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=j57jt93DkkU", "date": "2025-09-15"}, {"title": "nintendogs music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/div3dbeAVC8/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=div3dbeAVC8", "date": "2025-09-15"}, {"title": "parasite eve music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/nJw7yAgY6Hw/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=nJw7yAgY6Hw", "date": "2025-09-15"}, {"title": "persona 3 music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/gZ-ODyJLdGQ/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=gZ-ODyJLdGQ", "date": "2025-09-15"}, {"title": "the KING of FIGHTERS music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/WKQmf8G6044/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=WKQmf8G6044", "date": "2025-09-15"}, {"title": "trauma center music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/FjiwAtOnD7Y/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=FjiwAtOnD7Y", "date": "2025-09-15"}, {"title": "DRAGON BALL Z music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/FEvqep27AVU/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=FEvqep27AVU", "date": "2025-10-15"}, {"title": "DRIVING EMOTION TYPE-S music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/ERAnpDCNkY8/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=ERAnpDCNkY8", "date": "2025-10-15"}, {"title": "GITAROO MAN music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/ksttDTPhmfQ/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=ksttDTPhmfQ", "date": "2025-10-15"}, {"title": "HALO 3: odst music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/EeAoHfBQE0M/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=EeAoHfBQE0M", "date": "2025-10-15"}, {"title": "P.N.03 music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/UUSefWfoyqY/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=UUSefWfoyqY", "date": "2025-10-15"}, {"title": "SPYRO the dragon music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/LhcTXBxNfuQ/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=LhcTXBxNfuQ", "date": "2025-10-15"}, {"title": "TeKKeN 3 music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/aoIOAi9IBj8/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=aoIOAi9IBj8", "date": "2025-10-15"}, {"title": "einhänder music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/vp4gh0ej4bM/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=vp4gh0ej4bM", "date": "2025-10-15"}, {"title": "front mission 3 music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/woFszIrCD7M/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=woFszIrCD7M", "date": "2025-10-15"}, {"title": "no more heroes music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/GUmd1B2xOQQ/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=GUmd1B2xOQQ", "date": "2025-10-15"}, {"title": "ratchet & clank music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/AMT2Cu0aSek/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=AMT2Cu0aSek", "date": "2025-10-15"}, {"title": "CLOCK TOWER music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/BAOhTUnLpSo/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=BAOhTUnLpSo", "date": "2025-11-15"}, {"title": "Castlevania music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/nHZzAhzSlWM/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=nHZzAhzSlWM", "date": "2025-11-15"}, {"title": "Devil May Cry music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/4Jfy_TmX0CY/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=4Jfy_TmX0CY", "date": "2025-11-15"}, {"title": "RESIDENT EVIL music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/ycnFkeqhOc4/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=ycnFkeqhOc4", "date": "2025-11-15"}, {"title": "Rule of Rose music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/kFdNnJ5LoxU/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=kFdNnJ5LoxU", "date": "2025-11-15"}, {"title": "SILENT HILL music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/F1yWKkZZzSA/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=F1yWKkZZzSA", "date": "2025-11-15"}, {"title": "Virtua Fighter music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/uo_Hy16oYAI/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=uo_Hy16oYAI", "date": "2025-11-15"}, {"title": "Xenogears music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/7zuoKSVhjGY/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=7zuoKSVhjGY", "date": "2025-11-15"}, {"title": "dead or alive music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/5BYnKtZHcmE/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=5BYnKtZHcmE", "date": "2025-11-15"}, {"title": "shin megami tensei iv music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/DlqNLP9BEd4/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=DlqNLP9BEd4", "date": "2025-11-15"}, {"title": "stardew valley music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/GfUTCUAqTZA/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=GfUTCUAqTZA", "date": "2025-11-15"}, {"title": "the legend of zelda: Majora's Mask music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/5a7PnlDJs00/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=5a7PnlDJs00", "date": "2025-11-15"}, {"title": "Bust a Groove music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/dcACTpSXj5I/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=dcACTpSXj5I", "date": "2025-12-15"}, {"title": "CAPCOM vs. SNK music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/n7VZrbL1WIY/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=n7VZrbL1WIY", "date": "2025-12-15"}, {"title": "CATHERINE music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/oC-HbhUG_gs/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=oC-HbhUG_gs", "date": "2025-12-15"}, {"title": "DECA Sports music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/2mVwdmyijhk/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=2mVwdmyijhk", "date": "2025-12-15"}, {"title": "ENDLESS OCEAN music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/XbMaKUY_k0o/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=XbMaKUY_k0o", "date": "2025-12-15"}, {"title": "Katamari Damacy music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/9dp-h0Oz0E8/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=9dp-h0Oz0E8", "date": "2025-12-15"}, {"title": "MARIO KART Wii music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/n95CZhCa4YY/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=n95CZhCa4YY", "date": "2025-12-15"}, {"title": "R: RACING EVOLUTION music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/qKa8XOq-SG0/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=qKa8XOq-SG0", "date": "2025-12-15"}, {"title": "Shenmue music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/r1SL7vf91z0/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=r1SL7vf91z0", "date": "2025-12-15"}, {"title": "VA-11 HALL-A music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/difIYI3BdDk/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=difIYI3BdDk", "date": "2025-12-15"}, {"title": "viva piñata music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/gwH1ktrAph4/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=gwH1ktrAph4", "date": "2025-12-15"}, {"title": "BLiNX : the time sweeper music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/msNCMap8E1A/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=msNCMap8E1A", "date": "2026-01-15"}, {"title": "CHRONO TRIGGER music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/vnPB-sQjxqc/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=vnPB-sQjxqc", "date": "2026-01-15"}, {"title": "SUPER SMASH BROS. Melee music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/FXmU1X77r1g/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=FXmU1X77r1g", "date": "2026-01-15"}, {"title": "Coffee Talk music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/TBLsceQREHw/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=TBLsceQREHw", "date": "2026-02-15"}, {"title": "Gallop Racer music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/PmH_V2q_d7g/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=PmH_V2q_d7g", "date": "2026-02-15"}, {"title": "PERSONA 5 music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/P_kM2EYb87I/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=P_kM2EYb87I", "date": "2026-02-15"}, {"title": "Phoenix Wright: ace attorney music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/oMBK0ycxOy4/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=oMBK0ycxOy4", "date": "2026-02-15"}, {"title": "STREET FIGHTER EX music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/aIUhdwgnOXE/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=aIUhdwgnOXE", "date": "2026-02-15"}, {"title": "FINAL FANTASY VIII music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/XGDTAxpfeTc/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=XGDTAxpfeTc", "date": "2026-03-15"}, {"title": "NEED FOR SPEED music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/SgiJM5qPgYQ/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=SgiJM5qPgYQ", "date": "2026-03-15"}, {"title": "Persona 4 music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/ZvJQt559CTY/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=ZvJQt559CTY", "date": "2026-03-15"}, {"title": "PlayStation Home music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/dg2BGzxp0Jk/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=dg2BGzxp0Jk", "date": "2026-03-15"}, {"title": "TRAUMA CENTER: new blood music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/DMvudtbLBGc/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=DMvudtbLBGc", "date": "2026-03-15"}, {"title": "Yakuza music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/WAXVGVNxPn4/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=WAXVGVNxPn4", "date": "2026-03-15"}, {"title": "ace combat 3: electrosphere music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/Ywacvs3ZLnw/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=Ywacvs3ZLnw", "date": "2026-03-15"}, {"title": "The SiMs 2 music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/5e_SPMKyosk/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=5e_SPMKyosk", "date": "2026-04-15"}, {"title": "hotel dusk: Room 215 music", "mix_type": "franchise", "status": "published", "thumbnail": "https://i.ytimg.com/vi/ODTMK5Qu30M/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=ODTMK5Qu30M", "date": "2026-04-15"}, {"title": "Funk, UKG, Rally House mix | set no.2 | CLUB BBS", "mix_type": "club BBS", "status": "published", "thumbnail": "https://i.ytimg.com/vi/1THBJxgeQGE/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=1THBJxgeQGE", "date": "2025-09-15"}, {"title": "UKG, Rally House, R&B mix | set no.1 | CLUB BBS", "mix_type": "club BBS", "status": "published", "thumbnail": "https://i.ytimg.com/vi/QskwBP8sVmc/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=QskwBP8sVmc", "date": "2025-09-15"}, {"title": "House, UKG, Funk mix | set no.3 | CLUB BBS", "mix_type": "club BBS", "status": "published", "thumbnail": "https://i.ytimg.com/vi/jnYg-YhR2yk/hqdefault.jpg", "video_url": "https://www.youtube.com/watch?v=jnYg-YhR2yk", "date": "2026-01-15"}]
+</script>
+  <script>
+    (function() {
+      var videos = JSON.parse(document.getElementById('archive-data').textContent)
+        .filter(function(v) { return v.status === 'published'; });
+
+      var categoryLabels = {
+        composer: 'composer',
+        themed: 'themed',
+        console: 'console / handheld',
+        studio: 'studio / company',
+        franchise: 'franchise',
+        'club BBS': 'club BBS'
+      };
+
+      var activeCategory = 'all';
+      var searchTerm = '';
+
+      var grid = document.getElementById('archive-grid');
+      var countEl = document.getElementById('archive-count');
+      var chipsEl = document.getElementById('archive-chips');
+      var searchEl = document.getElementById('archive-search');
+
+      function buildChips() {
+        var cats = ['all'].concat(Object.keys(categoryLabels));
+        cats.forEach(function(cat) {
+          var chip = document.createElement('div');
+          chip.className = 'archive-chip' + (cat === 'all' ? ' active' : '');
+          chip.textContent = cat === 'all' ? 'all' : categoryLabels[cat];
+          chip.dataset.cat = cat;
+          chip.addEventListener('click', function() {
+            activeCategory = cat;
+            document.querySelectorAll('.archive-chip').forEach(function(c) {
+              c.classList.toggle('active', c.dataset.cat === cat);
+            });
+            render();
+          });
+          chipsEl.appendChild(chip);
+        });
+      }
+
+      function cleanTitle(t) {
+        return t.replace(/\s*music$/i, '').trim();
+      }
+
+      function makeCard(v) {
+        var isWip = v.status && v.status !== 'published';
+        var el = document.createElement(isWip ? 'div' : 'a');
+        el.className = 'archive-card' + (isWip ? ' is-wip' : '');
+        if (!isWip) {
+          el.href = v.video_url;
+          el.target = '_blank';
+          el.rel = 'noopener';
+        }
+
+        var thumbIsColor = v.thumbnail && v.thumbnail.charAt(0) === '#';
+        var thumb;
+        if (thumbIsColor) {
+          thumb = document.createElement('div');
+          thumb.className = 'thumb color-block';
+          thumb.style.background = v.thumbnail;
+          thumb.textContent = 'wip';
+        } else {
+          thumb = document.createElement('img');
+          thumb.className = 'thumb';
+          thumb.loading = 'lazy';
+          thumb.src = v.thumbnail;
+          thumb.alt = v.title;
+        }
+        el.appendChild(thumb);
+
+        var titleEl = document.createElement('div');
+        titleEl.className = 'card-title';
+        titleEl.textContent = cleanTitle(v.title);
+        el.appendChild(titleEl);
+
+        return el;
+      }
+
+      function render() {
+        var term = searchTerm.toLowerCase();
+        var filtered = videos.filter(function(v) {
+          var matchesCat = activeCategory === 'all' || v.mix_type === activeCategory;
+          var matchesTerm = !term || v.title.toLowerCase().indexOf(term) !== -1;
+          return matchesCat && matchesTerm;
+        });
+
+        grid.innerHTML = '';
+        filtered.forEach(function(v) {
+          grid.appendChild(makeCard(v));
+        });
+
+        countEl.textContent = filtered.length + ' mix' + (filtered.length === 1 ? '' : 'es');
+      }
+
+      searchEl.addEventListener('input', function(e) {
+        searchTerm = e.target.value;
+        render();
+      });
+
+      buildChips();
+      render();
+
+      var archiveWindow = document.getElementById('archive-window');
+      document.getElementById('archive-close').addEventListener('click', function() {
+        archiveWindow.style.display = 'none';
+      });
+    })();
+  </script>
 </body>
 </html>
+
